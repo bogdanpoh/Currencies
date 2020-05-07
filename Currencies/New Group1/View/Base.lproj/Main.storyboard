@@ -104,11 +104,14 @@
                                             <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="FoA-qj-nMx"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2U9-4r-4Nm">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2U9-4r-4Nm">
                                         <rect key="frame" x="311" y="1" width="102" height="127.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="Arrow"/>
+                                        <state key="normal" image="change"/>
+                                        <connections>
+                                            <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="ORS-Nf-ZjU"/>
+                                            <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="qsL-Jp-lmh"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8UQ-UP-keD">
                                         <rect key="frame" x="1" y="129.5" width="102.5" height="127.5"/>
@@ -202,11 +205,14 @@
                                             <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="9HF-tp-gcF"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7P-9J-MH1">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7P-9J-MH1">
                                         <rect key="frame" x="207.5" y="386.5" width="102.5" height="127.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="Del"/>
+                                        <state key="normal" image="delete-outline"/>
+                                        <connections>
+                                            <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="x0R-pM-IA0"/>
+                                            <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="13y-mK-kgC"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wvh-5B-RsM">
                                         <rect key="frame" x="311" y="386.5" width="102" height="127.5"/>
@@ -306,6 +312,9 @@
                         <viewLayoutGuide key="safeArea" id="3Dz-zp-7Aw"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Converter" id="Zkg-LG-cWD"/>
+                    <connections>
+                        <outlet property="deleteButton" destination="e7P-9J-MH1" id="dJI-Mf-2Lc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ENa-Zs-ADm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -522,4 +531,8 @@
             <point key="canvasLocation" x="-655" y="-911"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="change" width="25" height="25"/>
+        <image name="delete-outline" width="25" height="25"/>
+    </resources>
 </document>

@@ -8,8 +8,14 @@
 
 import UIKit
 
+enum ButtonState {
+    case upTapped, downTapped
+}
+
 class ConverterViewController: UIViewController {
 
+    @IBOutlet weak var deleteButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,13 +23,58 @@ class ConverterViewController: UIViewController {
     }
     
     @IBAction func downButtonTapped(_ sender: UIButton) {
-        sender.backgroundColor = .lightGray
+        changeStateButton(sender, .downTapped)
     }
     
     
     @IBAction func upInsideButtonTapped(_ sender: UIButton) {
-        sender.backgroundColor = .white
+        changeStateButton(sender, .upTapped)
     }
     
-
+    func changeStateButton(_ button: UIButton, _ state: ButtonState) {
+        
+        var buttonImageName = ""
+        let buttonControlState: UIControl.State = getCurrentControlState(state)
+        
+        switch button {
+        case deleteButton:
+            buttonImageName = "delete"
+        default:
+            break
+        }
+        
+        if let name = getButtonImage(buttonImageName, state) {
+            button.setImage(name, for: buttonControlState)
+        }
+        
+        switch state {
+        case .upTapped:
+            button.backgroundColor = .white
+        case .downTapped:
+            button.backgroundColor = .lightGray
+        }
+    }
+    
+    func getButtonImage(_ nameImage: String, _ state: ButtonState) -> UIImage? {
+        
+        var name = ""
+        
+        switch state {
+        case .upTapped:
+            name = nameImage + "-outline"
+        case .downTapped:
+            name = nameImage + "-fill"
+        }
+        
+        return UIImage(named: name, in: nil, with: nil)
+    }
+    
+    func getCurrentControlState(_ state: ButtonState) -> UIControl.State {
+        switch state {
+        case .upTapped:
+            return .normal
+        case .downTapped:
+            return .highlighted
+        }
+    }
 }
