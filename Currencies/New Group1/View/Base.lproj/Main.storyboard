@@ -41,71 +41,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="314" translatesAutoresizingMaskIntoConstraints="NO" id="tde-hS-5Yt">
-                                <rect key="frame" x="20" y="118" width="374" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2w-yC-Uxp">
-                                        <rect key="frame" x="0.0" y="0.0" width="39" height="30"/>
-                                        <state key="normal" title="USD"/>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-JX-362">
-                                        <rect key="frame" x="353" y="0.0" width="21" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="314" translatesAutoresizingMaskIntoConstraints="NO" id="JSl-PA-F2p">
-                                <rect key="frame" x="20" y="218" width="374" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QgB-Vs-ukA">
-                                        <rect key="frame" x="0.0" y="0.0" width="39" height="30"/>
-                                        <state key="normal" title="UAH"/>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0₴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaf-lO-BEb">
-                                        <rect key="frame" x="353" y="0.0" width="21" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2w-yC-Uxp">
+                                <rect key="frame" x="20" y="118" width="31" height="30"/>
+                                <state key="normal" title="USD"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QgB-Vs-ukA">
+                                <rect key="frame" x="20" y="218" width="32" height="30"/>
+                                <state key="normal" title="UAH"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaf-lO-BEb">
+                                <rect key="frame" x="373" y="118" width="21" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZU-Dm-bUq">
-                                <rect key="frame" x="0.0" y="298" width="414" height="515"/>
+                                <rect key="frame" x="0.0" y="318" width="414" height="495"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epU-iF-Vwk">
-                                        <rect key="frame" x="1" y="1" width="102.5" height="127.5"/>
+                                        <rect key="frame" x="1" y="1" width="102.5" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="7"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                        <state key="normal" title="7">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="UbK-a1-gfd"/>
                                             <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="LKo-G8-QtD"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhT-2d-nbp">
-                                        <rect key="frame" x="104.5" y="1" width="102" height="127.5"/>
+                                        <rect key="frame" x="104.5" y="1" width="102" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="8"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                        <state key="normal" title="8">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="hiL-Dm-sU0"/>
                                             <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="Z8b-OX-ToN"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lf-jb-Mmr">
-                                        <rect key="frame" x="207.5" y="1" width="102.5" height="127.5"/>
+                                        <rect key="frame" x="207.5" y="1" width="102.5" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="9"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                        <state key="normal" title="9">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="kYk-U0-Kr2"/>
                                             <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="FoA-qj-nMx"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2U9-4r-4Nm">
-                                        <rect key="frame" x="311" y="1" width="102" height="127.5"/>
+                                        <rect key="frame" x="311" y="1" width="102" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="change"/>
                                         <connections>
@@ -114,99 +107,127 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8UQ-UP-keD">
-                                        <rect key="frame" x="1" y="129.5" width="102.5" height="127.5"/>
+                                        <rect key="frame" x="1" y="124.5" width="102.5" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="4"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                        <state key="normal" title="4">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="301-SA-9wr"/>
                                             <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="PSC-J5-zvx"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uwm-eB-ehf">
-                                        <rect key="frame" x="104.5" y="129.5" width="102" height="127.5"/>
+                                        <rect key="frame" x="104.5" y="124.5" width="102" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                        <state key="normal" title="5">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="dTT-UR-a5J"/>
                                             <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="aMZ-Ey-xPF"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whL-cc-irb">
-                                        <rect key="frame" x="207.5" y="129.5" width="102.5" height="127.5"/>
+                                        <rect key="frame" x="207.5" y="124.5" width="102.5" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="6"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                        <state key="normal" title="6">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="gJt-tk-ydz"/>
                                             <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="6JN-LL-MVl"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPO-rb-OMT">
-                                        <rect key="frame" x="311" y="129.5" width="102" height="127.5"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPO-rb-OMT">
+                                        <rect key="frame" x="311" y="124.5" width="102" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="+"/>
+                                        <state key="normal" image="add"/>
+                                        <connections>
+                                            <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="9bV-fV-IzF"/>
+                                            <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="iUT-lN-g46"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T6P-b5-2AP">
-                                        <rect key="frame" x="1" y="258" width="102.5" height="127.5"/>
+                                        <rect key="frame" x="1" y="248" width="102.5" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="1"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                        <state key="normal" title="1">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="99b-HS-eUP"/>
                                             <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="0j4-cC-6Up"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgL-fJ-lRF">
-                                        <rect key="frame" x="104.5" y="258" width="102" height="127.5"/>
+                                        <rect key="frame" x="104.5" y="248" width="102" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="2"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                        <state key="normal" title="2">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="FVl-3t-ZPK"/>
                                             <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="e5c-AN-lUx"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQc-bn-BDJ">
-                                        <rect key="frame" x="207.5" y="258" width="102.5" height="127.5"/>
+                                        <rect key="frame" x="207.5" y="248" width="102.5" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="3"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                        <state key="normal" title="3">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="9bz-fn-0MW"/>
                                             <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="3BV-aj-XeQ"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="123-eU-9pv">
-                                        <rect key="frame" x="311" y="258" width="102" height="127.5"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="123-eU-9pv">
+                                        <rect key="frame" x="311" y="248" width="102" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="-"/>
+                                        <state key="normal" image="sub"/>
+                                        <connections>
+                                            <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="mX8-vg-rGI"/>
+                                            <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="YRI-TS-3WI"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYG-37-nr1">
-                                        <rect key="frame" x="1" y="386.5" width="102.5" height="127.5"/>
+                                        <rect key="frame" x="1" y="371.5" width="102.5" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="."/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                        <state key="normal" title=".">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="bS4-bF-oRg"/>
                                             <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="vi8-jk-vxa"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOu-tU-8Es">
-                                        <rect key="frame" x="104.5" y="386.5" width="102" height="127.5"/>
+                                        <rect key="frame" x="104.5" y="371.5" width="102" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="0"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                        <state key="normal" title="0">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="mvc-2D-a32"/>
                                             <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="9HF-tp-gcF"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7P-9J-MH1">
-                                        <rect key="frame" x="207.5" y="386.5" width="102.5" height="127.5"/>
+                                        <rect key="frame" x="207.5" y="371.5" width="102.5" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="delete-outline"/>
                                         <connections>
@@ -214,11 +235,14 @@
                                             <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="13y-mK-kgC"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wvh-5B-RsM">
-                                        <rect key="frame" x="311" y="386.5" width="102" height="127.5"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wvh-5B-RsM">
+                                        <rect key="frame" x="311" y="371.5" width="102" height="122.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="="/>
+                                        <state key="normal" image="equality"/>
+                                        <connections>
+                                            <action selector="downButtonTapped:" destination="QEG-OQ-BDS" eventType="touchDown" id="80k-ZM-uqz"/>
+                                            <action selector="upInsideButtonTapped:" destination="QEG-OQ-BDS" eventType="touchUpInside" id="91Q-jO-nka"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -295,30 +319,51 @@
                                     <constraint firstItem="8UQ-UP-keD" firstAttribute="width" secondItem="epU-iF-Vwk" secondAttribute="width" id="zLG-Kf-5Ts"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0₴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-JX-362">
+                                <rect key="frame" x="373" y="218" width="21" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="3Dz-zp-7Aw" firstAttribute="trailing" secondItem="tde-hS-5Yt" secondAttribute="trailing" constant="20" id="55f-lc-uez"/>
-                            <constraint firstItem="UZU-Dm-bUq" firstAttribute="top" secondItem="JSl-PA-F2p" secondAttribute="bottom" constant="50" id="640-4Z-Duc"/>
-                            <constraint firstItem="tde-hS-5Yt" firstAttribute="top" secondItem="3Dz-zp-7Aw" secondAttribute="top" constant="30" id="9Hn-Dl-eGo"/>
-                            <constraint firstItem="JSl-PA-F2p" firstAttribute="leading" secondItem="3Dz-zp-7Aw" secondAttribute="leading" constant="20" id="9wb-fM-5TB"/>
+                            <constraint firstItem="gAX-JX-362" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QgB-Vs-ukA" secondAttribute="trailing" constant="8" symbolic="YES" id="5xK-vN-phW"/>
+                            <constraint firstItem="3Dz-zp-7Aw" firstAttribute="trailing" secondItem="gAX-JX-362" secondAttribute="trailing" constant="20" id="DRZ-oy-ros"/>
+                            <constraint firstItem="gaf-lO-BEb" firstAttribute="centerY" secondItem="D2w-yC-Uxp" secondAttribute="centerY" id="GBS-Cd-Yw6"/>
+                            <constraint firstItem="3Dz-zp-7Aw" firstAttribute="trailing" secondItem="gaf-lO-BEb" secondAttribute="trailing" constant="20" id="IjC-4Z-8uE"/>
+                            <constraint firstItem="gAX-JX-362" firstAttribute="centerY" secondItem="QgB-Vs-ukA" secondAttribute="centerY" id="JQF-ys-1le"/>
+                            <constraint firstItem="UZU-Dm-bUq" firstAttribute="top" secondItem="QgB-Vs-ukA" secondAttribute="bottom" constant="70" id="JaP-d2-toG"/>
+                            <constraint firstItem="gaf-lO-BEb" firstAttribute="top" secondItem="3Dz-zp-7Aw" secondAttribute="top" constant="30" id="Qsg-oq-a0j"/>
                             <constraint firstItem="3Dz-zp-7Aw" firstAttribute="trailing" secondItem="UZU-Dm-bUq" secondAttribute="trailing" id="UVA-Dh-sDh"/>
+                            <constraint firstItem="D2w-yC-Uxp" firstAttribute="top" secondItem="3Dz-zp-7Aw" secondAttribute="top" constant="30" id="XWW-Wf-cz1"/>
                             <constraint firstItem="3Dz-zp-7Aw" firstAttribute="bottom" secondItem="UZU-Dm-bUq" secondAttribute="bottom" id="XnE-xG-wAL"/>
+                            <constraint firstItem="QgB-Vs-ukA" firstAttribute="leading" secondItem="3Dz-zp-7Aw" secondAttribute="leading" constant="20" id="aMS-Eh-LsW"/>
+                            <constraint firstItem="gAX-JX-362" firstAttribute="top" secondItem="gaf-lO-BEb" secondAttribute="bottom" constant="70" id="aSh-Mu-5Z0"/>
+                            <constraint firstItem="gaf-lO-BEb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="D2w-yC-Uxp" secondAttribute="trailing" constant="8" symbolic="YES" id="blc-lS-jcj"/>
+                            <constraint firstItem="D2w-yC-Uxp" firstAttribute="leading" secondItem="3Dz-zp-7Aw" secondAttribute="leading" constant="20" id="gbu-15-svj"/>
                             <constraint firstItem="UZU-Dm-bUq" firstAttribute="leading" secondItem="3Dz-zp-7Aw" secondAttribute="leading" id="hIy-r5-g9H"/>
-                            <constraint firstItem="3Dz-zp-7Aw" firstAttribute="trailing" secondItem="JSl-PA-F2p" secondAttribute="trailing" constant="20" id="hvd-u3-ALF"/>
-                            <constraint firstItem="JSl-PA-F2p" firstAttribute="top" secondItem="tde-hS-5Yt" secondAttribute="bottom" constant="70" id="ogX-IM-70Z"/>
-                            <constraint firstItem="tde-hS-5Yt" firstAttribute="leading" secondItem="3Dz-zp-7Aw" secondAttribute="leading" constant="20" id="y6u-qk-SLV"/>
+                            <constraint firstItem="QgB-Vs-ukA" firstAttribute="top" secondItem="D2w-yC-Uxp" secondAttribute="bottom" constant="70" id="qyl-se-FsD"/>
+                            <constraint firstItem="UZU-Dm-bUq" firstAttribute="top" secondItem="gAX-JX-362" secondAttribute="bottom" constant="70" id="uhq-LK-4SK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3Dz-zp-7Aw"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Converter" id="Zkg-LG-cWD"/>
                     <connections>
+                        <outlet property="addButton" destination="xPO-rb-OMT" id="9vO-Oc-taN"/>
+                        <outlet property="changeButton" destination="2U9-4r-4Nm" id="B5m-RH-m4y"/>
                         <outlet property="deleteButton" destination="e7P-9J-MH1" id="dJI-Mf-2Lc"/>
+                        <outlet property="equalityButton" destination="Wvh-5B-RsM" id="rSC-JY-us9"/>
+                        <outlet property="firstLabel" destination="gaf-lO-BEb" id="UxS-RS-fUz"/>
+                        <outlet property="firstSelectCurrencyButton" destination="D2w-yC-Uxp" id="ree-Ax-eBb"/>
+                        <outlet property="secondLabel" destination="gAX-JX-362" id="qWK-uK-poT"/>
+                        <outlet property="secondSelectCurrencyButton" destination="QgB-Vs-ukA" id="mMu-9y-Wv4"/>
+                        <outlet property="subButton" destination="123-eU-9pv" id="v6P-y6-Jby"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ENa-Zs-ADm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-838" y="654"/>
+            <point key="canvasLocation" x="-839.13043478260875" y="653.57142857142856"/>
         </scene>
         <!--History-->
         <scene sceneID="4O1-1b-DZm">
@@ -532,7 +577,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="change" width="25" height="25"/>
-        <image name="delete-outline" width="25" height="25"/>
+        <image name="add" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="change" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="delete-outline" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="equality" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="sub" width="42.666667938232422" height="42.666667938232422"/>
     </resources>
 </document>
