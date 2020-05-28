@@ -12,6 +12,10 @@ class HistoryTableViewController: UITableViewController {
 
     let identifier = "HistoryTableViewCell"
     
+    var currentDates = [String]()
+    
+    var dateCurrenies = [DateCurrency]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,8 +31,55 @@ class HistoryTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.currentDates = []
+        self.dateCurrenies = []
+        
         DatabaseManager.instance.loadData {
-            self.tableView.reloadData()
+            
+            OperationQueue.main.addOperation {
+                
+                var dates: Set<String> = []
+                
+                let currencies = DatabaseManager.instance.currencies
+                
+                for currency in currencies {
+                    if let date = currency.date {
+                        dates.insert(date)
+                    }
+                }
+                
+                for data in dates {
+                    self.currentDates.append(data)
+                }
+                
+                self.currentDates.sort{ DatabaseManager.instance.compareDate($0, $1)}
+                
+                self.sortCurrencyOfSection(self.currentDates, currencies)
+            
+                self.tableView.reloadData()
+            }
+        }
+    
+    }
+    
+    func sortCurrencyOfSection(_ dates: [String], _ currencies: [Currency]) {
+        
+        dates.forEach { (date) in
+
+            var sortedCurrencies = [Currency]()
+
+            currencies.forEach { (currency) in
+
+                guard let currencyDate = currency.date else { return }
+                
+                if date == currencyDate {
+                    sortedCurrencies.append(currency)
+                }
+
+            }
+
+            self.dateCurrenies.append(DateCurrency(date: date, currencies: sortedCurrencies))
+
         }
     }
     
@@ -40,16 +91,24 @@ extension HistoryTableViewController {
         return CGFloat(integerLiteral: 80)
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return self.dateCurrenies.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.dateCurrenies[section].date
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DatabaseManager.instance.currencies.count
+        return dateCurrenies[section].currencies.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! HistoryTableViewCell
         
-        let currency = DatabaseManager.instance.currencies[indexPath.row]
+        let currency = dateCurrenies[indexPath.section].currencies[indexPath.row]
         
-        cell.setupCell(currency: currency, bankType: activeBankType)
+        cell.setupCell(currency: currency)
         cell.selectionStyle = .none
         
         return cell

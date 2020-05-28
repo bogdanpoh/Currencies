@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum BankType {
+    case privatBankOnline
+    case privateBankOffline
+    case monoBank
+}
+
 let privatApiOnlineCurrency = "https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11"
 let privatApiOfflineCurrency = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5"
 let monobankApiCurrency = "https://api.monobank.ua/bank/currency"

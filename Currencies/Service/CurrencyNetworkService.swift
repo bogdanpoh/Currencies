@@ -8,19 +8,14 @@
 
 import Foundation
 
-enum BankType {
-    case privatBankOnline
-    case privateBankOffline
-    case monoBank
-}
+
 
 class CurrencyNetworkService {
     private init (){}
     
     static let instance = CurrencyNetworkService()
     
-    var privatBankCurrency = [PrivatbankCurrencyModel]()
-    var monoBankCurrency = [MonobankCurrencyModel]()
+    var currentCurrency = [CurrencyModel]()
     
     func loadCurrency(bankType: BankType, completion: @escaping DownloadComplete){
         
@@ -43,17 +38,21 @@ class CurrencyNetworkService {
             guard let data = data else { return }
             
             do {
+                self.currentCurrency.removeAll()
+                
                 if bankType == .privatBankOnline || bankType == .privateBankOffline {
-                    self.privatBankCurrency = try JSONDecoder().decode([PrivatbankCurrencyModel].self, from: data)
-                    self.privatBankCurrency.removeLast()
-                } else if bankType == .monoBank {
-                    let currency = try JSONDecoder().decode([MonobankCurrencyModel].self, from: data)
+                    var privatBankCurrency = try JSONDecoder().decode([PrivatbankCurrencyModel].self, from: data)
+                    privatBankCurrency.removeLast()
                     
-                    self.monoBankCurrency.removeAll()
+                    privatBankCurrency.forEach { (privatCurrency) in
+                        self.currentCurrency.append(CurrencyModel(privatBankModel: privatCurrency))
+                    }
+                } else if bankType == .monoBank {
+                    let monobankCurrency = try JSONDecoder().decode([MonobankCurrencyModel].self, from: data)
                     
                     for i in 0 ..< 5 {
                         if i != 3 {
-                            self.monoBankCurrency.append(currency[i])
+                            self.currentCurrency.append(CurrencyModel(monobankModel: monobankCurrency[i]))
                         }
                     }
                     

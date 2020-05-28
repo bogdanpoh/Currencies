@@ -35,36 +35,55 @@ class Cell {
         return value
     }
     
-    func getCellImage(currencyName: String, currencyType: BankType) -> UIImage? {
+    func getCellImage(currencyName: String) -> UIImage? {
+        let name = currencyName.lowercased()
         
         guard let defaultImage = UIImage(named: "ukr-flag") else { return nil }
         
-        switch currencyType {
-        case .privatBankOnline, .privateBankOffline:
-            let name = currencyName.lowercased()
-            
-            switch name {
-            case "usd":
-                return UIImage(named: "usd-flag")
-            case "eur":
-                return UIImage(named: "eur-flag")
-            case "rur":
-                return UIImage(named: "rur-flag")
-            default:
-                return defaultImage
-            }
-            
-        case .monoBank:
-            var name: String = ""
-            
-            currencyCode.forEach { (key, value) in
-                if currencyName == key || currencyName == value {
-                    name = value
-                }
-            }
-            
-            return UIImage(named: name.lowercased()+"-flag")
+        switch name {
+        case "usd":
+            return UIImage(named: "usd-flag")
+        case "eur":
+            return UIImage(named: "eur-flag")
+        case "rur":
+            return UIImage(named: "rur-flag")
+        case "pln":
+            return UIImage(named: "pln-flag")
+        default:
+            return defaultImage
         }
-        
     }
+    
+//    func getCellImage(currencyName: String, currencyType: BankType) -> UIImage? {
+//
+//        guard let defaultImage = UIImage(named: "ukr-flag") else { return nil }
+//
+//        switch currencyType {
+//        case .privatBankOnline, .privateBankOffline:
+//            let name = currencyName.lowercased()
+//
+//            switch name {
+//            case "usd":
+//                return UIImage(named: "usd-flag")
+//            case "eur":
+//                return UIImage(named: "eur-flag")
+//            case "rur":
+//                return UIImage(named: "rur-flag")
+//            default:
+//                return defaultImage
+//            }
+//
+//        case .monoBank:
+//            var name: String = ""
+//
+//            currencyCode.forEach { (key, value) in
+//                if currencyName == key || currencyName == value {
+//                    name = value
+//                }
+//            }
+//
+//            return UIImage(named: name.lowercased()+"-flag")
+//        }
+//
+//    }
 }

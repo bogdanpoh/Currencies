@@ -11,10 +11,12 @@ import JGProgressHUD
 
 class CurrentTableViewController: UITableViewController {
     
+    // MARK: - Properties
     let identifier = "CurrencyTableViewCell"
     
     let hud = JGProgressHUD(style: .dark)
     
+    // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,6 +29,13 @@ class CurrentTableViewController: UITableViewController {
                 self.tableView.reloadData()
                 self.hud.dismiss(animated: true)
 //                DatabaseManager.instance.saveData(type: activeBankType, complete: nil)
+                
+                DatabaseManager.instance.loadData {
+//                    print(CurrencyNetworkService.instance.privatBankCurrency)
+//                    print()
+//                    print(DatabaseManager.instance.currentDateCurrencies)
+                }
+                
             }
         }
         
@@ -41,10 +50,21 @@ class CurrentTableViewController: UITableViewController {
             OperationQueue.main.addOperation {
                 self.tableView.reloadData()
                 self.hud.dismiss(animated: true)
+                
+                
             }
         }
         
     }
+    
+    func checkCurrencies() -> Bool {
+        
+        
+        
+        return false
+    }
+    
+    //MARK: - Actions
     
     @IBAction func refreshControlAction(_ sender: UIRefreshControl) {
         
@@ -62,33 +82,19 @@ class CurrentTableViewController: UITableViewController {
 
 extension CurrentTableViewController {
     
+    //MARK: - Extensions
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(integerLiteral: 80)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        var count: Int = 0
-        
-        switch activeBankType {
-        case .privatBankOnline, .privateBankOffline:
-            count = CurrencyNetworkService.instance.privatBankCurrency.count
-        case .monoBank:
-            count = CurrencyNetworkService.instance.monoBankCurrency.count
-        }
-        
-        return count
+        return CurrencyNetworkService.instance.currentCurrency.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! CurrencyTableViewCell
         
-        switch activeBankType {
-        case .privatBankOnline, .privateBankOffline:
-            cell.setupCell(currency: CurrencyNetworkService.instance.privatBankCurrency[indexPath.row])
-        case .monoBank:
-            cell.setupCell(currency: CurrencyNetworkService.instance.monoBankCurrency[indexPath.row])
-        }
+        cell.setupCell(currency: CurrencyNetworkService.instance.currentCurrency[indexPath.row])
         
         return cell
     }
@@ -101,35 +107,19 @@ extension CurrentTableViewController {
         
         self.tableView.deselectRow(at: indexPath, animated: true)
         
-        var currencyName: String = ""
-        var currencyBuy: Double = 0
-        var currencySale: Double = 0
+        let currency = CurrencyNetworkService.instance.currentCurrency[indexPath.row]
+        
+        let currencyName: String = currency.ccy
+        let currencyBuy: Double = currency.buy
+        let currencySale: Double = currency.sell
         var currencySource: String = ""
         
         switch activeBankType {
         case .privatBankOnline, .privateBankOffline:
-            let currency = CurrencyNetworkService.instance.privatBankCurrency[indexPath.row]
-            
-            currencyBuy = Double(currency.buy) ?? 0
-            currencySale = Double(currency.sale) ?? 0
-            currencyName = currency.ccy
+            currencySource = privatSourceName
 
-            if activeBankType == .privatBankOnline {
-                currencySource = privatSourceName
-            } else {
-                currencySource = privatOfflineSourceName
-            }
-            
         case .monoBank:
-            let currency = CurrencyNetworkService.instance.monoBankCurrency[indexPath.row]
-            
-            currencyBuy = currency.rateBuy ?? 0
-            currencySale = currency.rateSell ?? 0
             currencySource = monoSouceName
-            
-            if let name = currencyCode[String(describing: currency.currencyCodeA)] {
-                currencyName = name
-            }
         }
         
         let currencyFormatBuy = Cell.instance.formatCurrency(number: currencyBuy)
@@ -142,6 +132,7 @@ extension CurrentTableViewController {
         present(sharedViewController, animated: true)
     }
     
+
     
 }
 

@@ -20,37 +20,14 @@ class CurrencyTableViewCell: UITableViewCell {
         Cell.instance.setBorderImage(self.currencyImage)
     }
     
-    func setupCell(currency: PrivatbankCurrencyModel) {
+    func setupCell(currency: CurrencyModel) {
         
-        guard let doubleBuy = Double(currency.buy) else { return }
-        guard let doubleSale = Double(currency.sale) else { return }
-        guard let image = Cell.instance.getCellImage(currencyName: currency.ccy, currencyType: .privatBankOnline) else { return }
+        if  let image = Cell.instance.getCellImage(currencyName: currency.ccy) {
         
-//        let doubleBuy = 22.2
-//        let doubleSale = 22.3
-//        let image = UIImage(named: "urk-flag")!
-        
-        setup(buy: Cell.instance.formatCurrency(number: doubleBuy),
-              sale: Cell.instance.formatCurrency(number: doubleSale),
-              image: image)
-        
-    }
-    
-    func setupCell(currency: MonobankCurrencyModel) {
-        
-        guard let doubleBuy = currency.rateBuy else { return }
-        guard let doubleSale = currency.rateSell else { return }
-        guard let image = Cell.instance.getCellImage(currencyName: "\(currency.currencyCodeA)", currencyType: .monoBank) else { return }
-        
-        setup(buy: Cell.instance.formatCurrency(number: doubleBuy),
-              sale: Cell.instance.formatCurrency(number: doubleSale),
-              image: image)
-    }
-    
-    private func setup(buy: String, sale: String, image: UIImage) {
-        self.currencyBuyLabel.text = buy
-        self.currencySaleLabel.text = sale
-        self.currencyImage.image = image
+            self.currencyBuyLabel.text = Cell.instance.formatCurrency(number: currency.buy)
+            self.currencySaleLabel.text = Cell.instance.formatCurrency(number: currency.sell)
+            self.currencyImage.image = image
+        }
     }
     
 }
