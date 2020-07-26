@@ -10,10 +10,35 @@ import Foundation
 import CoreData
 
 class DatabaseManager {
+    
+    //MARK: - Properties
     static let instance = DatabaseManager()
     
     var currencies = [Currency]()
-    var currentDateCurrencies = [Currency]()
+    
+    //MARK: - Methods
+    func saveCurrency(_ currency: CurrencyModel, type: BankType) {
+        loadData(complete: nil)
+        
+        let newCurrency = Currency(context: PersistenceService.context)
+        
+        newCurrency.name = currency.ccy
+        newCurrency.buy = String(describing: currency.buy)
+        newCurrency.sale = String(describing: currency.sell)
+        newCurrency.date = currency.date
+        
+        switch type {
+        case .privatBankOnline:
+            newCurrency.source = privatSourceName
+        case .privateBankOffline:
+            newCurrency.source = privatOfflineSourceName
+        case .monoBank:
+            newCurrency.source = monoSouceName
+        }
+        
+        currencies.append(newCurrency)
+        PersistenceService.saveContext()
+    }
     
     func saveData(type: BankType, complete: SaveComplete?) {
         
@@ -21,7 +46,6 @@ class DatabaseManager {
         
         switch type {
         case .privatBankOnline, .privateBankOffline:
-//            let currencyPrivat = CurrencyNetworkService.instance.privatBankCurrency
             let currencyPrivat = CurrencyNetworkService.instance.currentCurrency
             
             currencyPrivat.forEach { (item) in
@@ -30,21 +54,17 @@ class DatabaseManager {
                 currency.buy = String(describing: item.buy)
                 currency.sale = String(describing: item.sell)
                 currency.source = type == .privatBankOnline ? privatSourceName : privatOfflineSourceName
-                currency.name = item.ccy
                 currency.date = getCurrentDate()
+                currency.name = item.ccy
                 
                 currencies.append(currency)
                 PersistenceService.saveContext()
             }
         case .monoBank:
-//            let currencyMono = CurrencyNetworkService.instance.monoBankCurrency
             let currencyMono = CurrencyNetworkService.instance.currentCurrency
             
             currencyMono.forEach { (item) in
                 let currency = Currency(context: PersistenceService.context)
-                
-//                guard let buy = item.rateBuy else { return }
-//                guard let sale = item.rateSell else { return }
                 
                 currency.buy = String(describing: item.buy)
                 currency.sale = String(describing: item.sell)
@@ -52,41 +72,28 @@ class DatabaseManager {
                 currency.date = getCurrentDate()
                 currency.name = item.ccy
                 
-//                if let name = currencyCode[String(describing: item.currencyCodeA)] {
-//                    currency.name = name
-//                }
                 currencies.append(currency)
                 PersistenceService.saveContext()
             }
         }
+        
         complete?()
+        
     }
     
-    func loadData(complete: SaveComplete?) {
+    func loadData(complete: LoadComplete?) {
         let fetchRequest: NSFetchRequest<Currency> = Currency.fetchRequest()
         
         do {
             let data = try PersistenceService.context.fetch(fetchRequest)
-            //            self.currencies = data
+            
             currencies = []
             
-            var source: String
+            let sourceName = getCurrentSourceName()
             
-            switch activeBankType {
-            case .privatBankOnline:
-                source = privatSourceName
-            case .privateBankOffline:
-                source = privatOfflineSourceName
-            case .monoBank:
-                source = monoSouceName
-            }
             data.forEach { (currency) in
-                if currency.source == source {
+                if currency.source == sourceName {
                     currencies.append(currency)
-                }
-                
-                if currency.date == getCurrentDate() {
-                    currentDateCurrencies.append(currency)
                 }
             }
             
@@ -97,6 +104,59 @@ class DatabaseManager {
         } catch {
             print(error.localizedDescription)
         }
+    }
+    
+    func loadLastData(complete: LoadComplete?) {
+        
+        self.currencies.removeAll()
+        
+        let fetchRequest: NSFetchRequest<Currency> = Currency.fetchRequest()
+        
+        do {
+            
+            let data = try PersistenceService.context.fetch(fetchRequest)
+            
+            var dates: Set<String> = []
+            var sortDates = [String]()
+            
+            let sourceName = getCurrentSourceName()
+            
+            data.forEach { (currency) in
+                dates.insert(currency.date ?? "")
+            }
+            
+            dates.forEach { (date) in
+                sortDates.append(date)
+            }
+            
+            sortDates.sort{ DatabaseManager.instance.compareDate($0, $1) }
+            
+            guard let firstDate = sortDates.first else { return }
+            
+            print(sortDates)
+            
+            data.forEach { (currency) in
+                
+                if let date = currency.date {
+                    if currency.source == sourceName && date == firstDate {
+                        currencies.append(currency)
+                    }
+                }
+            }
+            
+            //            if let firstDate = sortDates.first {
+            //                data.forEach { (currency) in
+            //                    if currency.date == firstDate && sourceName == currency.source {
+            //                        currencies.append(currency)
+            //                    }
+            //                }
+            //            }
+            
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        complete?()
     }
     
     func removeAllData() {

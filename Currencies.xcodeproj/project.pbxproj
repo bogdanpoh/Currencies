@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		AE60CD1B2CB0DE28DC6FF6A3 /* Pods_Currencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6AC2A022DC5903065638906 /* Pods_Currencies.framework */; };
 		F70834902480650000879C83 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F708348F2480650000879C83 /* CurrencyModel.swift */; };
+		F73D900B2492C16100816F72 /* ConverterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73D90092492C16100816F72 /* ConverterTableViewCell.swift */; };
+		F73D900C2492C16100816F72 /* ConverterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F73D900A2492C16100816F72 /* ConverterTableViewCell.xib */; };
 		F7A88A5A246338E4006AB061 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A88A59246338E4006AB061 /* AppDelegate.swift */; };
 		F7A88A5C246338E4006AB061 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A88A5B246338E4006AB061 /* SceneDelegate.swift */; };
 		F7A88A61246338E4006AB061 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7A88A5F246338E4006AB061 /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 		7C5A8E87496834B3EAB77287 /* Pods-Currencies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Currencies.debug.xcconfig"; path = "Target Support Files/Pods-Currencies/Pods-Currencies.debug.xcconfig"; sourceTree = "<group>"; };
 		E6AC2A022DC5903065638906 /* Pods_Currencies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Currencies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F708348F2480650000879C83 /* CurrencyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
+		F73D90092492C16100816F72 /* ConverterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTableViewCell.swift; sourceTree = "<group>"; };
+		F73D900A2492C16100816F72 /* ConverterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConverterTableViewCell.xib; sourceTree = "<group>"; };
 		F7A88A56246338E4006AB061 /* Currencies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Currencies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7A88A59246338E4006AB061 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7A88A5B246338E4006AB061 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 			children = (
 				F7A88A7F24633AD8006AB061 /* CurrencyTableViewCell.swift */,
 				F7A88A8024633AD8006AB061 /* CurrencyTableViewCell.xib */,
+				F73D90092492C16100816F72 /* ConverterTableViewCell.swift */,
+				F73D900A2492C16100816F72 /* ConverterTableViewCell.xib */,
 				F7A88A8324633C21006AB061 /* HistoryTableViewCell.swift */,
 				F7A88A8424633C21006AB061 /* HistoryTableViewCell.xib */,
 			);
@@ -269,6 +275,7 @@
 				F7A88A8624633C21006AB061 /* HistoryTableViewCell.xib in Resources */,
 				F7A88A69246338E5006AB061 /* LaunchScreen.storyboard in Resources */,
 				F7A88A66246338E5006AB061 /* Assets.xcassets in Resources */,
+				F73D900C2492C16100816F72 /* ConverterTableViewCell.xib in Resources */,
 				F7A88A61246338E4006AB061 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,6 +339,7 @@
 				F7A88A7924633A1F006AB061 /* PersistenceService.swift in Sources */,
 				F7A88A8C24633DDF006AB061 /* CurrentTableViewController.swift in Sources */,
 				F7C839102480354E00066A44 /* DateCurrency.swift in Sources */,
+				F73D900B2492C16100816F72 /* ConverterTableViewCell.swift in Sources */,
 				F70834902480650000879C83 /* CurrencyModel.swift in Sources */,
 				F7A88A5A246338E4006AB061 /* AppDelegate.swift in Sources */,
 				F7A88A7724633A02006AB061 /* CurrencyNetworkService.swift in Sources */,

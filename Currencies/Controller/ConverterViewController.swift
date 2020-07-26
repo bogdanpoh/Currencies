@@ -8,197 +8,53 @@
 
 import UIKit
 
-enum ButtonState {
-    case upTapped, downTapped
-}
-
 class ConverterViewController: UIViewController {
     
-    //MARK: - Outlets
-    @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var changeButton: UIButton!
-    @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var subButton: UIButton!
-    @IBOutlet weak var equalityButton: UIButton!
-    
-    @IBOutlet weak var firstLabel: UILabel!
-    @IBOutlet weak var secondLabel: UILabel!
-    
-    @IBOutlet weak var firstSelectCurrencyButton: UIButton!
-    @IBOutlet weak var secondSelectCurrencyButton: UIButton!
-    
-    
     //MARK: - Properties
-    var selectLabel: UILabel!
+    let identifier = "ConverterTableViewCell"
     
+    //MARK: - Outlets
+    @IBOutlet weak var currenciesListTableView: UITableView!
     
     //MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        selectLabel = firstLabel
+        self.currenciesListTableView.delegate = self
+        self.currenciesListTableView.dataSource = self
         
-        let deleteButtonLongTapped = UILongPressGestureRecognizer(target: self, action: #selector(longTapped))
-        self.deleteButton.addGestureRecognizer(deleteButtonLongTapped)
+        self.currenciesListTableView.register(UINib(nibName: "ConverterTableViewCell", bundle: nil), forCellReuseIdentifier: identifier)
     }
     
-    func changeStateButton(_ button: UIButton, _ state: ButtonState) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        var downColor: UIColor!
-        
-        switch button {
-        case changeButton:
-            downColor = .systemYellow
-            
-        case addButton:
-            downColor = .systemGreen
-            
-        case subButton:
-            downColor = .systemRed
-            
-        case equalityButton:
-            downColor = .systemBlue
-            
-        default:
-            downColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
-        }
-        
-        setButtonImage(button, state)
-        
-        changeBackgroundColorButton(button, state, downTappedColor: downColor)
-        
-    }
-    
-    func setButtonImage(_ button: UIButton, _ state: ButtonState) {
-        
-        var imageName: String?
-        let buttonControlState: UIControl.State = getCurrentControlState(state)
-        
-        switch state {
-        case .upTapped:
-            switch button {
-            case deleteButton:
-                imageName = "delete-outline"
-            case changeButton:
-                imageName = "change"
-            case addButton:
-                imageName = "add"
-            case subButton:
-                imageName = "sub"
-            case equalityButton:
-                imageName = "equality"
-            default:
-                break
-            }
-        case .downTapped:
-            switch button {
-            case deleteButton:
-                imageName = "delete-fill"
-            case changeButton:
-                imageName = "change-select"
-            case addButton:
-                imageName = "add-select"
-            case subButton:
-                imageName = "sub-select"
-            case equalityButton:
-                imageName = "equality-select"
-            default:
-                break
-            }
-        }
-        
-        if let name = imageName {
-            if let image = UIImage(named: name) {
-                button.setImage(image, for: buttonControlState)
+        OperationQueue.main.addOperation {
+            DatabaseManager.instance.loadLastData {
+                self.currenciesListTableView.reloadData()
             }
         }
     }
+
+}
+
+extension ConverterViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func getCurrentControlState(_ state: ButtonState) -> UIControl.State {
-        switch state {
-        case .upTapped:
-            return .normal
-        case .downTapped:
-            return .highlighted
-        }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(integerLiteral: 80)
     }
     
-    func changeBackgroundColorButton(_ button: UIButton, _ state: ButtonState, upTappedColor: UIColor = .white, downTappedColor: UIColor) {
-        switch state {
-        case .upTapped:
-            button.backgroundColor = upTappedColor
-        case .downTapped:
-            button.backgroundColor = downTappedColor
-        }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return DatabaseManager.instance.currencies.count
     }
     
-    func changeLabel(currentLabel: UILabel) {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.currenciesListTableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! ConverterTableViewCell
         
-        if currentLabel == firstLabel {
-            selectLabel = secondLabel
-        } else if currentLabel == secondLabel {
-            selectLabel = firstLabel
-        }
+        cell.setupCell(currency: DatabaseManager.instance.currencies[indexPath.row])
         
-    }
-    
-    func inputNumberToLabel(_ text: String) {
-        if var selectLabelText = selectLabel.text {
-            
-            if selectLabelText.first == "0" {
-                selectLabelText.removeFirst()
-            }
-            
-            guard let symbol = selectLabelText.last else { return }
-            
-            selectLabelText.removeLast()
-            
-            selectLabel.text = "\(selectLabelText)\(text)\(symbol)"
-        }
-    }
-    
-    func removeLastInLabel() {
-        if var selectLabelText = selectLabel.text {
-        
-            guard let symbol = selectLabel.text?.last else { return }
-            let result = selectLabelText.replacingOccurrences(of: String(describing: symbol), with: "")
-            selectLabelText = result
-            selectLabelText.removeLast()
-            
-            if selectLabelText.count >= 1 {
-                selectLabel.text = "\(selectLabelText)\(symbol)"
-            } else {
-                selectLabel.text = "0\(symbol)"
-            }
-            
-        }
-    }
-    
-    //MARK: - Actions
-    @IBAction func downButtonTapped(_ sender: UIButton) {
-        changeStateButton(sender, .downTapped)
+        return cell
     }
     
     
-    @IBAction func upInsideButtonTapped(_ sender: UIButton) {
-        changeStateButton(sender, .upTapped)
-        
-        if let value = sender.titleLabel?.text {
-            inputNumberToLabel(value)
-        } else {
-            switch sender {
-            case deleteButton:
-                removeLastInLabel()
-            default:
-                break
-            }
-        }
-    }
-    
-    @objc func longTapped(gesture: UILongPressGestureRecognizer) {
-        if gesture.state == UIGestureRecognizer.State.began {
-            print("Long pressed")
-            deleteButton.backgroundColor = .white
-        }
-    }
 }

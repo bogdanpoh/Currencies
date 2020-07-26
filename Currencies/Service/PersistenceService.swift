@@ -13,6 +13,7 @@ class PersistenceService {
     
     private init() {}
     
+    //MARK: - Properties
     static var context: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
@@ -27,6 +28,7 @@ class PersistenceService {
         return container
     }()
     
+    //MARK: - Methods
     static func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {

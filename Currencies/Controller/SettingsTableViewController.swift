@@ -70,6 +70,22 @@ class SettingsTableViewController: UITableViewController {
         
     }
     
+    func changeValue(sender: UISwitch, switches: [UISwitch], saveKey: String) {
+        
+        if sender.isOn {
+            switches.forEach { (switcher) in
+                switcher.isOn = false
+            }
+            keys.forEach { (key) in
+                if key != saveKey {
+                    UserDefaults.standard.set(false, forKey: key)
+                } else {
+                    UserDefaults.standard.set(true, forKey: key)
+                }
+            }
+        }
+    }
+    
     @IBAction func clearDBPressedAction(_ sender: UIButton) {
         DatabaseManager.instance.removeAllData()
     }
@@ -85,22 +101,6 @@ class SettingsTableViewController: UITableViewController {
     
     @IBAction func monobankAction(_ sender: UISwitch) {
         changeValue(sender: sender, switches: [privatBankOnlineSwitch, privatBankOfflineSwitch], saveKey: monobankKey)
-    }
-    
-    func changeValue(sender: UISwitch, switches: [UISwitch], saveKey: String) {
-        
-        if sender.isOn {
-            switches.forEach { (switcher) in
-                switcher.isOn = false
-            }
-            keys.forEach { (key) in
-                if key != saveKey {
-                    UserDefaults.standard.set(false, forKey: key)
-                } else {
-                    UserDefaults.standard.set(true, forKey: key)
-                }
-            }
-        }
     }
     
 }

@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 class CurrencyNetworkService {
     private init (){}
     
@@ -17,7 +15,7 @@ class CurrencyNetworkService {
     
     var currentCurrency = [CurrencyModel]()
     
-    func loadCurrency(bankType: BankType, completion: @escaping DownloadComplete){
+    func loadCurrency(bankType: BankType, completion: @escaping DownloadComplete, showError: @escaping ShowError){
         
         var urlCurrency: String = ""
         
@@ -40,14 +38,15 @@ class CurrencyNetworkService {
             do {
                 self.currentCurrency.removeAll()
                 
-                if bankType == .privatBankOnline || bankType == .privateBankOffline {
+                switch bankType {
+                case .privatBankOnline, .privateBankOffline:
                     var privatBankCurrency = try JSONDecoder().decode([PrivatbankCurrencyModel].self, from: data)
                     privatBankCurrency.removeLast()
                     
                     privatBankCurrency.forEach { (privatCurrency) in
                         self.currentCurrency.append(CurrencyModel(privatBankModel: privatCurrency))
                     }
-                } else if bankType == .monoBank {
+                case .monoBank:
                     let monobankCurrency = try JSONDecoder().decode([MonobankCurrencyModel].self, from: data)
                     
                     for i in 0 ..< 5 {
@@ -55,7 +54,6 @@ class CurrencyNetworkService {
                             self.currentCurrency.append(CurrencyModel(monobankModel: monobankCurrency[i]))
                         }
                     }
-                    
                 }
                 
                 completion()
@@ -63,7 +61,8 @@ class CurrencyNetworkService {
             } catch {
                 print(error.localizedDescription)
                 
-                completion()
+                
+                showError()
             }
             
         }

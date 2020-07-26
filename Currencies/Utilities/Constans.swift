@@ -32,3 +32,16 @@ let dateFormat = "dd.MM.yyyy"
 
 typealias DownloadComplete = () -> ()
 typealias SaveComplete = () -> ()
+typealias LoadComplete = () -> ()
+typealias ShowError = () -> ()
+
+func getCurrentSourceName() -> String {
+    switch activeBankType {
+    case .privatBankOnline:
+        return privatSourceName
+    case .privateBankOffline:
+        return privatOfflineSourceName
+    case .monoBank:
+        return monoSouceName
+    }
+}
